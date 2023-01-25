@@ -1,9 +1,11 @@
-import React from 'react'
 import styled from 'styled-components'
+import { ThemeContext } from '../../Context-api/ThemeContext'
+import React, { useContext } from 'react'
 
 const Character = ({ img, name, gender, species, status, type}) => {
+    const { theme } = useContext(ThemeContext)
     return(
-        <Card>
+        <Card style={{ color: theme.color, backgroundColor: theme.backgroundCard}}>
             <PerfilCard>
                 <ImgCharacter src={img} alt="" />
                 <h2>{name}</h2>

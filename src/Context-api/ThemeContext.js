@@ -4,10 +4,12 @@ import { useState } from 'react'
 export const themes = {
     dark: {
         background: '#696969', //DimGray
-        color: '#FFF'
+        backgroundCard: '#E6E6FA',
+        color: '#000000'
     },
     light: {
         background: '#E6E6FA', //	Lavender
+        backgroundCard: '#696969',
         color: '#FFF'
     }
 }
