@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import React, { useContext } from 'react'
+import { ThemeContext } from '../../Context-api/ThemeContext'
 import Pagination from '../Pagination/Pagination'
 import Character from '../Character/index'
 import NavBar from '../NavBar/index'
@@ -13,6 +15,7 @@ characterTest()
 
 
 const CharactersList = () => {
+    const { theme } = useContext(ThemeContext)
     const [loading, setLoading] = useState(true)
     const [character, setCharacter] = useState([])
     const [currentPageUrl, setCurrentPageUrl] = useState('https://rickandmortyapi.com/api/character');
@@ -65,22 +68,24 @@ const CharactersList = () => {
 
     return(
         <>
-          <header>
-            <NavBar />
-          </header>
+        <section style={{ color: theme.color, backgroundColor: theme.background}}>
+            <header>
+                <NavBar />
+            </header>
 
-          <Container>
-            {charList}
-          </Container>
+            <Container>
+                {charList}
+            </Container>
 
-        <PaginationArea>
-            <Pagination
-                nextPage={nextPageUrl ? nextPage : null}
-                prevPage={prevPageUrl ? prevPage : null}
-                goToPage={goToPage}
-                pages={pages}
-            />
-        </PaginationArea>
+            <PaginationArea>
+                <Pagination
+                    nextPage={nextPageUrl ? nextPage : null}
+                    prevPage={prevPageUrl ? prevPage : null}
+                    goToPage={goToPage}
+                    pages={pages}
+                />
+            </PaginationArea>
+        </section>
         </>
     )
 }
