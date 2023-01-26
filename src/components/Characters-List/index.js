@@ -22,6 +22,8 @@ const CharactersList = () => {
     const [nextPageUrl , setNextPageUrl] = useState()
     const [prevPageUrl , setPrevPageUrl] = useState()
     const [pages, setPages] = useState()
+    const [search, setSearch] = useState("")
+    const [searchParam] = useState(["species", "status", "type"])
 
     useEffect(()=> {
         const url = currentPageUrl
@@ -51,27 +53,41 @@ const CharactersList = () => {
     }
 
     if (loading) return "Loading..."
-    const charList = character.map(char => <Character key={Math.floor(Math.random() * 10000)} name={char.name} img={char.image}
-    gender={char.gender} species={char.species} status={char.status} type={char.type ?? 'not defined'} />)
-    /*
-    O Math.floor()método estático sempre arredonda para baixo e retorna o maior inteiro menor ou igual a um determinado número.
-    console.log(Math.floor(5.95));
-    Expected output: 5
-     -///-
-    console.log(Math.floor(5.05));
-    Expected output: 5
-    */
 
-    /*
-    O Math.random()método estático retorna um número pseudoaleatório de ponto flutuante que é maior ou igual a 0 e menor que 1, com distribuição aproximadamente uniforme nesse intervalo — que você pode dimensionar para o intervalo desejado. A implementação seleciona a semente inicial para o algoritmo de geração de números aleatórios; não pode ser escolhido ou redefinido pelo usuário.
-    */
+    const charList = character.map(char => <Character  name={char.name} img={char.image}
+    gender={char.gender} species={char.species} status={char.status} type={char.type ?? 'not defined'} />)
+
+    const searchCharacter = character.filter((char) => {
+        return searchParam.some((newCharacter)=> {
+            return(
+                char[newCharacter]?.toString()?.toLowerCase()?.indexOf(search.toLowerCase()) > -1
+            );
+        });
+    });
 
     return(
         <>
         <section style={{ color: theme.color, backgroundColor: theme.background}}>
             <header>
                 <NavBar />
+
+                <div>
+                 <label htmlFor="search-form">
+                    <input 
+                    type="search"
+                    name="search-form"
+                    id="search-form"
+                    className="search-input"
+                    placeholder="Search for Character"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    />
+                 <span> Search characters here</span>
+                </label> 
+            </div>
             </header>
+
+            
 
             <Container>
                 {charList}
