@@ -1,3 +1,4 @@
+<img src="./images/logo.jpg" alt="imagem ilustrativa"/>
 <h1>Rick and Morty-Api Projeto pessoal</h1>
 
 <h2>Sobre o projeto</h2>
