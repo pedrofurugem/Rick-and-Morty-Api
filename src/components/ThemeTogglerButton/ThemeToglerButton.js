@@ -6,8 +6,6 @@ export const ThemeTogglerButton = (props) => {
 
     const {theme, setTheme} = useContext(ThemeContext)
 
-    console.log('testando temas', theme)
-
     return(
         <>
             <div style={{ backgroundColor: theme.background}}>
