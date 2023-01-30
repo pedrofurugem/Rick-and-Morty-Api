@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import React, { useContext } from 'react'
 import { ThemeContext } from '../../Context-api/ThemeContext'
+import FooterInfo from '../footer/index'
 import Pagination from '../Pagination/Pagination'
 import Character from '../Character/index'
 import NavBar from '../NavBar/index'
@@ -54,8 +55,6 @@ const CharactersList = () => {
                 <NavBar />
             </header>
 
-            
-
             <Container>
                 {charList}
             </Container>
@@ -68,6 +67,8 @@ const CharactersList = () => {
                     pages={pages}
                 />
             </PaginationArea>
+
+            <FooterInfo />
         </section>
         </>
     )
